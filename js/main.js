@@ -1,9 +1,11 @@
 //variables
 let nombre;
+let apellido;
+let telefono;
+let email;
 let tiempo;
 let animo;
 let dinero;
-let cantidad;
 let precioTiempo;
 let precioAnimo;
 let precioDinero;
@@ -13,8 +15,27 @@ function vacio (){
   alert("Tu respuesta quedó en blanco.\nPor favor, probá de nuevo.")
 }
 
-//programa
+function Usuario(nombre, apellido, telefono, email) {
+  this.nombre=nombre;
+  this.apellido=apellido;
+  this.telefono=telefono;
+  this.email=email;
+  }
 
+  function cargarUsuario (array, nuevo){
+    array.push(nuevo);
+  }
+  
+
+//array
+const usuarios = [
+  {id:1, nombre:"Germán", apellido: "Cornejo", telefono:1156967228, email:"germancor@yahoo.com"},
+  {id:2, nombre: "Pedro", apellido: "Gómez", telefono:1133432243, email:"pedrogomez@gmail.com"},
+];
+
+console.log(usuarios);
+
+//programa
 
 nombre=prompt('¡Te doy la bienvenida!\nSoy el diseñador de experiencias de /MODO:AVENTURA/.\n¿Cómo es tu nombre?')
 while (nombre == "") {
@@ -22,13 +43,47 @@ while (nombre == "") {
   nombre=prompt('Por favor, ¿Me decís tu nombre?')
 }
 
-email=prompt("¡Hola"+" "+nombre+"!\n¿Nos pasás tu correo electrónico?")
-while (email == "") {
+apellido=prompt('¿Y tu apellido?')
+while (nombre == "") {
   vacio();
-  email=prompt('¿Nos pasás tu mail? Prometemos no enviar SPAM')
+  nombre=prompt('Por favor, ¿Me decís tu apellido?')
 }
 
-alert ('¡Genial! Gracias.\n\nTe voy a hacer algunas sugerencias para tus vacaciones.')
+telefono=prompt('¡Perfecto!\n¿Tu teléfono?')
+while (nombre == "") {
+  vacio();
+  nombre=prompt('Por favor, ¿Me decís tu telefono?')
+}
+
+email=prompt("¿Nos pasás tu correo electrónico?")
+while (email == "") {
+  vacio();
+  email=prompt('¿Nos pasás tu mail?')
+}
+
+console.log(nombre, apellido, telefono, email);
+let suscripto = prompt("¿Querés suscribirte a nuestro newsletter?")
+
+if (suscripto != "") {  
+  switch (suscripto) {
+    case "si":
+      const nuevoUsuario = new Usuario(nombre, apellido, telefono, email);
+      cargarUsuario(usuarios,nuevoUsuario)
+    
+      alert("¡Gracias! Ya registramos tus datos.\nSigamos con las preguntas...");
+    break;
+    case "no":
+      alert("No hay drama. Ningún dato tuyo quedará registrado")
+      break;
+    default:
+      alert("Opción no válida. Por favor, respondé 'si' o 'no'");
+      break;
+  }
+}
+
+console.log(usuarios);
+
+alert ('Ahora te voy a hacer algunas sugerencias para tus vacaciones.')
 
 tiempo = prompt('¿Cuánto tiempo de vacaciones querés tomarte? \nMarcá:\n \n1: Un mes\n2: Quince días\n3: Un fin de semana.');
 if (tiempo != "") {
